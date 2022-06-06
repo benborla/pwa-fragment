@@ -1,0 +1,22 @@
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/build/' ~ brandCode ~ '/images/android-chrome-192x192.png', brandCode) }}">
+
+    <link rel="manifest" href="{{ asset('/build/' ~ brandCode ~ '/manifest.json?brandcode=' ~ brandCode, brandCode) }}">
+    <link rel="mask-icon" href="{{ asset('/build/' ~ brandCode ~ '_safari-pinned-tab.svg', brandCode) }}" color="#00a1e5">
+    <link rel="shortcut icon" href="{{ asset('/build/' ~ brandCode ~ '/' ~ brandCode ~ '_favicon.ico', brandCode) }}">
+    <meta name="apple-mobile-web-app-title" content="Vera&amp;John">
+    <meta name="application-name" content="Vera&amp;John">
+    <meta name="msapplication-TileColor" content="#00a1e5">
+    <meta name="theme-color" content="#00a1e5">
+
+    {% block stylesheets %}
+        {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+        {# {{ encore_entry_link_tags('app') }} #}
+
+        <!-- Renders a link tag (if your module requires any CSS)
+             <link rel="stylesheet" href="/build/app.css"> -->
+    {% endblock %}
+
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app-' ~ brandCode, null, brandCode) }}
+    {% endblock %}
+
