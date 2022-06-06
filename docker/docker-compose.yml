@@ -1,0 +1,20 @@
+version: '3.0'
+services:
+  fragment-pwa-nginx:
+    image: nginx:1.13
+    ports:
+      - "8086:8080"
+    volumes:
+      - ../platform:/var/www
+      - ./nginx/fragment.conf:/etc/nginx/conf.d/fragment.conf
+    depends_on:
+      - fragment-pwa-php
+  fragment-pwa-php:
+    image: registry-mt1.enjoy-platform.net/silverspin/composer-npm-fragment-php74:4
+    volumes:
+      - ../platform:/var/www
+      - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
+networks:
+  default:
+    external:
+      name: environment_default
