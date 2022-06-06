@@ -10,7 +10,8 @@ services:
     depends_on:
       - fragment-pwa-php
   fragment-pwa-php:
-    image: registry-mt1.enjoy-platform.net/silverspin/composer-npm-fragment-php74:4
+    # image: registry-mt1.enjoy-platform.net/silverspin/composer-npm-fragment-php74:4
+    image: benborla/fragment-pwa:latest
     volumes:
       - ../platform:/var/www
       - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
