@@ -77,12 +77,12 @@ function getConfig ({ brand, color, entries }) {
   return config
 }
 
-// const yuugado = getConfig({
-  // brand: 'yuugado',
-  // color: 'blue',
-  // entries: {
-  // }
-// })
+const yuugado = getConfig({
+  brand: 'yuugado',
+  color: 'blue',
+  entries: {
+  }
+})
 
 const vj = getConfig({
   brand: 'vj',
