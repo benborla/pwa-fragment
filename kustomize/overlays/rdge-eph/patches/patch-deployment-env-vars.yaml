@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fragment
+spec:
+  template:
+    spec:
+      containers:
+      - name: php
+        env:
+        - name: APP_ENV
+          value: eph
+        - name: ENJOY_ENVIRONMENT
+          value: rdge-eph

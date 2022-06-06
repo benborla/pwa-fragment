@@ -1,0 +1,7 @@
+framework:
+    assets:
+        packages:
+          vj:
+            json_manifest_path: '%kernel.project_dir%/public/build/vj/manifest.json'
+          yuugado:
+            json_manifest_path: '%kernel.project_dir%/public/build/yuugado/manifest.json'

@@ -1,0 +1,6 @@
+webpack.config.js
+jest.setup.js
+coverage/
+node_modules/
+public/
+vendor/

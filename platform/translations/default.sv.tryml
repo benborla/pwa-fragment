@@ -1,0 +1,3 @@
+example:
+  translation: Svensk grundöversättning
+  translation_with_var: Hej %name%, från default-domänen

@@ -1,0 +1,3 @@
+[submodule "kustomize-base"]
+	path = kustomize/shared-configs
+	url = git@git.enjoy-platform.net:dumarca/core-platform-devops/kustomize-base.git

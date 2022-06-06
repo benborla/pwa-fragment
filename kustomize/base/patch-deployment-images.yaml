@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fragment
+spec:
+  template:
+    spec:
+      containers:
+      - name: php
+        image: boilerplate-fragment-php
+      - name: nginx
+        image: boilerplate-fragment-frontend
