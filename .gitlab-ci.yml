@@ -1,0 +1,10 @@
+include:
+  - project: 'dumarca/ci-templates'
+    file: 'cd-templates/fragment/entrypoint.yml'
+
+image: registry-mt1.enjoy-platform.net/silverspin/composer-npm-fragment-php74:4
+
+variables:
+  APP_CONFIG: pwa-fragment
+  GIT_SUBMODULE_STRATEGY: recursive
+  SONAR_TEST_INCLUSIONS: platform/assets/**/*.test.js,platform/tests/**/*Test.php

@@ -1,0 +1,18 @@
+{% include('example.nav.html.twig') %}
+{% if token is defined %}
+    <meta http-equiv="Authorization" content="{{token}}" />
+    <script>
+        (function(){
+            var worker = new Worker('/js/worker.refresh-token.js');
+            var metaEl = document.querySelector('meta[http-equiv="Authorization"]');
+
+            worker.postMessage({
+                token: metaEl.content
+            });
+
+            worker.addEventListener('message', function(evt) {
+                metaEl.content = evt.data.token;
+            });
+        })();
+    </script>
+{% endif %}

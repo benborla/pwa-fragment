@@ -1,0 +1,45 @@
+###########################################
+# Start working in a dedicated build image
+###########################################
+FROM registry-mt1.enjoy-platform.net/silverspin/composer-npm-fragment-php74:4 as builder-image
+WORKDIR /var/www/platform
+
+###########################################
+# Use that image as installer for packages
+###########################################
+FROM builder-image as installer
+
+# Install PHP packages
+COPY composer* ./
+COPY symfony* ./
+RUN composer install --optimize-autoloader --no-dev --no-scripts
+
+# Install Node packages
+COPY package* ./
+RUN npm install
+
+###########################################
+# Use installer image to compile/build stuff
+###########################################
+FROM installer as compiler
+
+# Copy over all source files, and build node and composer files
+# Will use .dockerignore to skip copying some files
+COPY . .
+RUN composer run-script auto-scripts
+RUN ./bin/console cache:warmup
+RUN npm run build
+
+###########################################
+# Move to dedicated run image
+###########################################
+FROM registry-mt1.enjoy-platform.net/base-images/redhat-php:remi-7.4
+
+COPY . .
+COPY --from=builder-image /bin/composer /bin/composer
+COPY --from=installer /var/www/platform/vendor ./vendor
+COPY --from=compiler /var/www/platform/public ./public
+COPY --from=compiler /var/www/platform/var ./var
+
+# This is needed for the env dump from symfony
+RUN touch .env.local.php && chmod g+rw .env.local.php && chgrp root .env.local.php

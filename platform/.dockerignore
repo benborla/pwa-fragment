@@ -1,0 +1,23 @@
+# Directories
+.git
+__mocks__
+coverage
+node_modules
+openapi-specs
+tests
+var
+vendor
+public/build
+public/bundles
+
+# Files
+.eslint*
+.gitignore
+clover*
+Dockerfile
+Dockerfile*
+jest*
+phpcs*
+phpunit*
+webpack.dev.js
+.env.*

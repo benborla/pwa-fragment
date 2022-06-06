@@ -1,0 +1,12 @@
+config:
+    rdge:
+        script:
+            - echo "test"
+    afun:
+        script:
+            - echo "test"
+    plng:
+        script:
+            - echo "test"
+lang: node
+directory: docs

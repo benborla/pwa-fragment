@@ -1,0 +1,53 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+
+metadata:
+  name: pwa-fragment
+
+build:
+  artifacts:
+    - image: pwa-fragment-frontend
+      context: ./platform
+      docker:
+        dockerfile: Dockerfile-frontend
+    - image: pwa-fragment-php
+      context: ./platform
+      docker:
+        dockerfile: Dockerfile-php
+
+# To be able to run the local version of the software you will have to
+# configure docker to talk to the minikube registry instead of the remote.
+# This can be done by running eval $(minikube docker-env) before running skaffold.
+deploy:
+  kubeContext: minikube
+  kustomize:
+    paths:
+      - kustomize/overlays/local
+
+profiles:
+  - name: qa-mt1
+    deploy:
+      kubeContext: /portal-mt1-test-enjoy-platform-local:8443/system:serviceaccount:openshift:gitlab-skaffold-deploy
+      kustomize:
+        paths:
+          - kustomize/overlays/qa-mt1
+  - name: qa-release-stg-mt1
+    deploy:
+      kustomize:
+        paths:
+          - kustomize/overlays/rdge-eph
+  - name: rdge-eph
+    deploy:
+      kustomize:
+        paths:
+          - kustomize/overlays/rdge-eph
+  - name: afun-eph
+    deploy:
+      kustomize:
+        paths:
+          - kustomize/overlays/afun-eph
+  - name: plng-eph
+    deploy:
+      kustomize:
+        paths:
+          - kustomize/overlays/plng-eph

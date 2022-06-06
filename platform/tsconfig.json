@@ -1,0 +1,31 @@
+{
+    "include": [
+        "./assets/**/*.ts",
+        "./assets/**/*.tsx",
+        "./assets/**/*.vue",
+    ],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "jsx": "preserve",
+        "strictNullChecks": false,
+        "noImplicitAny": false,
+        "lib": [
+            "es2015",
+            "dom",
+            "scripthost"
+        ]
+    },
+    "files": [
+        "./assets/vue-shim.d.ts"
+    ]
+}
